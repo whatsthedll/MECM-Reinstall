@@ -17,6 +17,9 @@
 #
 # 0.8 - Edited 6/28/21
 # - Added visual confirmation when a step completes
+#
+# 0.9 - Edited 1/11/22
+# - Added the BITS troubleshooing pack
 
 # Configuration parameters
 $computername = (Get-CimInstance -ClassName Win32_ComputerSystem).Name
@@ -92,6 +95,17 @@ remove-item -path 'C:\Windows\SoftwareDistribution' -force -recurse
 start-sleep 15
 start-service -name wuauserv
 write-host 'Complete.'
+
+# Run the BITS Troubleshooter
+write-host 'Resetting the BITS service...'
+stop-service -name bits
+start-sleep 15
+start-service -name bits
+start-sleep 15
+write-host 'Running the BITS Troubleshooter...'
+get-troubleshootingpack -path 'C:\Windows\diagnostics\system\BITS' | invoke-troubleshootingpack -answerfile '.\bitsanswer.xml' -unattedned
+start-sleep 60
+write-host 'Complete'
 
 # Run the Windows Update Troubleshooter
 write-host 'Running the Windows Update Troubleshooter...'
