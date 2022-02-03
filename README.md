@@ -3,7 +3,7 @@ This removes the MECM client from your system and then completely removes all fi
 
 --- Instructions ---
 
-Place the two files in this repository (mecm_reinstall.ps1 and windowsanswer.xml) in your folder that you have ccmsetup.exe and the rest of it's file.
+Place the three files in this repository (mecm_reinstall.ps1, bitsanswer.xml and windowsanswer.xml) in your folder that you have ccmsetup.exe and the rest of it's file.
 
 Before running make the following changes:
 
